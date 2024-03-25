@@ -3,23 +3,23 @@
 <head>
     <meta charset="UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<title>SocialistShooter</title>
+	<title>Destruir Enemigos</title>
 	
-	<!-- Standardised web app manifest -->
+	<!-- Manifiesto de aplicación web estandarizado -->
 	<link rel="manifest" href="app.manifest" />
 	
-	<!-- Allow fullscreen mode on iOS devices. (These are Apple specific meta tags.) -->
+	<!-- Permitir el modo de pantalla completa en dispositivos iOS. (Estas son metaetiquetas específicas de Apple) -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 	<link rel="apple-touch-icon" sizes="256x256" href="icon-256.png" />
 	<meta name="HandheldFriendly" content="true" />
 	
-	<!-- Chrome for Android web app tags -->
+	<!-- Etiquetas de aplicaciones web de Chrome para Android -->
 	<meta name="mobile-web-app-capable" content="yes" />
 	<link rel="shortcut icon" sizes="256x256" href="icon-256.png" />
 
-    <!-- All margins and padding must be zero for the canvas to fill the screen. -->
+    <!-- Todos los márgenes y rellenas deben ser cero para que el lienzo llene la pantalla. -->
 	<style type="text/css">
 		* {
 			padding: 0;
@@ -39,16 +39,15 @@
 		}
     </style>
 	
-
 </head> 
  
 <body> 
 	<div id="fb-root"></div>
 	
 	<script>
-	// Issue a warning if trying to preview an exported project on disk.
+	// Emitir una advertencia si se intenta obtener una vista previa de un proyecto exportado en el disco.
 	(function(){
-		// Check for running exported on file protocol
+		// Comprobar si se está ejecutando el protocolo exportado en archivo
 		if (window.location.protocol.substr(0, 4) === "file")
 		{
 			alert("Exported games won't work until you upload them. (When running on the file:/// protocol, browsers block many features from working for security reasons.)");
@@ -56,50 +55,48 @@
 	})();
 	</script>
 	
-	<!-- The canvas must be inside a div called c2canvasdiv -->
+	<!-- El lienzo debe estar dentro de un div llamado c2canvasdiv -->
 	<div id="c2canvasdiv">
 	
-		<!-- The canvas the project will render to.  If you change its ID, don't forget to change the
-		ID the runtime looks for in the jQuery events above (ready() and cr_sizeCanvas()). -->
+		<!-- El lienzo en el que se renderizará el proyecto.  Si cambias su ID, no olvides cambiar el
+		ID que el tiempo de ejecución busca en los eventos jQuery anteriores (ready() y cr_sizeCanvas()). -->
 		<canvas id="c2canvas" width="1920" height="1080">
-			<!-- This text is displayed if the visitor's browser does not support HTML5.
-			You can change it, but it is a good idea to link to a description of a browser
-			and provide some links to download some popular HTML5-compatible browsers. -->
-			<h1>Your browser does not appear to support HTML5.  Try upgrading your browser to the latest version.  <a href="http://www.whatbrowser.org">What is a browser?</a>
+			<!-- Este texto se muestra si el navegador del visitante no es compatible con HTML5.
+			Puede cambiarlo, pero es una buena idea vincularlo a una descripción de un navegador
+			y proporcionar algunos enlaces para descargar algunos navegadores populares compatibles con HTML5. -->
+			<h1>Su navegador no parece ser compatible con HTML5.  Intente actualizar su navegador a la última versión.  <a href="http://www.whatbrowser.org">What is a browser?</a>
 			<br/><br/><a href="http://www.microsoft.com/windows/internet-explorer/default.aspx">Microsoft Internet Explorer</a><br/>
 			<a href="http://www.mozilla.com/firefox/">Mozilla Firefox</a><br/>
 			<a href="http://www.google.com/chrome/">Google Chrome</a><br/>
 			<a href="http://www.apple.com/safari/download/">Apple Safari</a><br/>
-			<a href="http://www.google.com/chromeframe">Google Chrome Frame for Internet Explorer</a><br/></h1>
+			<a href="http://www.google.com/chromeframe">Marco de Google Chrome para Internet Explorer</a><br/></h1>
 		</canvas>
 		
 	</div>
 	
-	<!-- Pages load faster with scripts at the bottom -->
+	<!-- Las páginas se cargan más rápido con scripts en la parte inferior -->
 	
-	<!-- Construct 2 exported games require jQuery. -->
+	<!-- Los juegos exportados de Construct 2 requieren jQuery. -->
 	<script src="jquery-2.0.0.min.js"></script>
 
-
-	
-    <!-- The runtime script.  You can rename it, but don't forget to rename the reference here as well.
-    This file will have been minified and obfuscated if you enabled "Minify script" during export. -->
+    <!-- El script en tiempo de ejecución.  Puede cambiarle el nombre, pero no olvide cambiar el nombre de la referencia aquí también.
+    Este archivo se habrá minimizado y ofuscado si habilitó "Minificar script" durante la exportación. -->
 	<script src="c2runtime.js"></script>
 
     <script>
-		// Size the canvas to fill the browser viewport.
+		// Cambiar el tamaño del lienzo para que ocupe la ventana gráfica del navegador.
 		jQuery(window).resize(function() {
 			cr_sizeCanvas(jQuery(window).width(), jQuery(window).height());
 		});
 		
-		// Start the Construct 2 project running on window load.
+		// Inicie el proyecto de Construct 2 ejecutándose en la carga de la ventana.
 		jQuery(document).ready(function ()
 		{			
-			// Create new runtime using the c2canvas
+			// Creación de un nuevo tiempo de ejecución mediante c2canvas
 			cr_createRuntime("c2canvas");
 		});
 		
-		// Pause and resume on page becoming visible/invisible
+		// Pausa y reanudación en la página que se vuelve visible/invisible
 		function onVisibilityChanged() {
 			if (document.hidden || document.mozHidden || document.webkitHidden || document.msHidden)
 				cr_setSuspended(true);
